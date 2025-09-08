@@ -8,28 +8,28 @@ import faiss
 from sentence_transformers import SentenceTransformer
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-# Silence tokenizer  warnings
+#silence tokenizer  warnings so many of them!
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# ====== Give paths of dl models llama and or mistrel 
+#give paths of dl models llama and or mistrel 
 #model_path = os.path.expanduser("~/LLM/llama/hf-llama-2-7b")  # local LLaMA-2-7B
 model_path = os.path.expanduser("~/LLM/mistral/mistral-7b-instruct")  # local Mistral
 
-# ====  Give the path for generated Q&A samples as context for model to use for retrival
+#ggive the path for generated Q&A samples as context for model to use for retrival
 index_path = "qa_faiss_index.index"
 docs_path = "qa_documents.pkl"
 
-# ===== Embedding model 
+#embedding model 
 print("Loading embedding model...")
 embed_model = SentenceTransformer("sentence-transformers/all-mpnet-base-v2")
 
-# ===== Load Q&A index and  docs 
+# load Q&A index and  docs 
 print("Loading FAISS index and documents...")
 index = faiss.read_index(index_path)
 with open(docs_path, "rb") as f:
     documents = pickle.load(f)
 
-# Now I want to load tokenizer and  model
+# for now I want to load tokenizer and  model
 print("Loading Mistral model...")
 tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=True)
 model = AutoModelForCausalLM.from_pretrained(
@@ -63,7 +63,7 @@ def generate_answer(query, max_new_tokens=200):
 
     context = "\n".join([f"Example {i+1}: {doc}" for i, doc in enumerate(retrieved)])
 
-    # Build specific prompt
+    # build specific prompt
     prompt = f"""
 You are a professional fashion stylist. 
 Use the context if it is useful. If the context is missing info, rely on your own knowledge of fashion.
@@ -80,15 +80,15 @@ Answer (as a fashion stylist):
 
     inputs = tokenizer(prompt, return_tensors="pt")
 
-    # Count number of tokens used
+    #count number of tokens used
     prompt_tokens = inputs["input_ids"].shape[1]
     print(f"\n Prompt token count: {prompt_tokens}")
 
-    # Push inputs to GPU (I have it!!)
+    # pshing inputs to GPU (I have it!!)
     if torch.cuda.is_available():
         inputs = {k: v.to("cuda") for k, v in inputs.items()}
 
-    # Generate  answers based on the retreived answers!!
+    # generate  answers based on the retreived answers!!
     with torch.no_grad():
         output = model.generate(
             **inputs,
@@ -105,7 +105,7 @@ Answer (as a fashion stylist):
     text = tokenizer.decode(output[0], skip_special_tokens=True)
     answer = text.split("Answer (as a fashion stylist):")[-1].strip()
 
-    # End calculating the timing
+    # end of calculating the timing
     elapsed = time.time() - start_time
     print(f"\n Answer generated in {elapsed:.2f} seconds")
 
@@ -116,13 +116,13 @@ Answer (as a fashion stylist):
 
     return answer
 
-# Now run the test  --------
+# run a test  --------
 if __name__ == "__main__":
     query = "what top and jeans combination fits my petite figure?" 
     answer = generate_answer(query, max_new_tokens=120)
     print("\nFinal Answer:\n", answer)
 
-    # Cleanup
+    # cleanup to empty cach for gpu
     del model
     del tokenizer
     torch.cuda.empty_cache()
