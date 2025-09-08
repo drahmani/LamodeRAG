@@ -20,23 +20,25 @@ Features:
 Installation:
 1. Clone the repository: 
 
+```bash
 git clone https://github.com/drahmani/LamodeRAG
 cd FashionRAG
+```
 
 2. Create a new Conda environment with Python 3.10:
-
+```bash
     conda create --name RAG_gpu python=3.10
     conda activate RAG_gpu
-
+```
 3. Install dependencies:
-
+```bash
 pip install -r requirements.txt
-
+```
 4. **Evaluation Example:**
    
-
+```bash
    python src/RAG_gpu.py
-
+```
 Modify files in `configs/` or `data/` to customize prompts or datasets.
 
 Contributing:
