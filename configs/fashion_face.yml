@@ -1,0 +1,32 @@
+name: fashion_face
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy=1.26.4
+  - pandas
+  - matplotlib
+  - scipy
+  - scikit-learn
+  - scikit-image
+  - tqdm
+  - jupyterlab
+  - notebook
+  - pillow
+  - onnxruntime
+  #- onnxruntime-gpu
+  #- opencv=4.11.0
+  - pytorch
+  - torchvision
+  - pytorch-cuda=12.1
+#  - cudatoolkit=11.7  # match your GPU (if any)
+  - pip
+  - pip:
+      - albumentations
+      - labelme
+      - transformers
+      - insightface==0.7.3
+      - opencv-python==4.9.0.80
+      - onnxruntime-gpu
