@@ -16,20 +16,20 @@ Features:
 - will be trying quantization  for large models
 
 Installation:
-1. Clone the repository:
-\`\`\`bash
+1. Clone the repository: https://github.com/drahmani/LamodeRAG
+
 git clone 
 cd FashionRAG
-\`\`\`
+
 2. Install dependencies:
-\`\`\`bash
+
 pip install -r requirements.txt
-\`\`\`
+
 
 Usage:
-\`\`\`bash
+
 python src/RAG_gpu.py
-\`\`\`
+
 
 Modify files in `configs/` or `data/` to customize prompts or datasets.
 
@@ -37,3 +37,4 @@ Contributing:
 1. Fork the repository
 2. Create a feature branch
 3. Submit a pull request
+

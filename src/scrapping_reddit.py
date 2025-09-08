@@ -6,15 +6,15 @@ import time
 from prawcore.exceptions import NotFound, Redirect, Forbidden
 
 reddit = praw.Reddit(
-    client_id="DqJbuOlpU2XLnT8Qk5bDhg",
-    client_secret="ZvAxC3R_zEoCZGCiLs5iHJ8gejP_lA",
-    username="Kolahghermezzi",
-    password="43616Reddit!",
-    user_agent="fashion-scraper-bot by u/Kolahghermezzi"
+    client_id= "insert clinet id"
+    client_secret="insert",
+    username="insert",
+    password="????!",
+    user_agent="?????"
 )
 
 # 🔎 Only scrape this subreddit
-sub = "Fairolives"
+sub = "catgory"
 
 appearance_keywords = re.compile(
     r"\b(skin tone|undertone|olive skin|fair skin|warm|cool|neutral|color match|hair color|eye color|"
