@@ -118,7 +118,7 @@ Answer (as a fashion stylist):
 
 # run a test  --------
 if __name__ == "__main__":
-    query = "what top and jeans combination fits my petite figure?" 
+    query = "what color of top and jeans combination fits red hair and tanned skin ?" 
     answer = generate_answer(query, max_new_tokens=120)
     print("\nFinal Answer:\n", answer)
 
