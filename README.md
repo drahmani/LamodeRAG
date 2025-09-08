@@ -22,7 +22,7 @@ Installation:
 
 ```bash
 git clone https://github.com/drahmani/LamodeRAG
-cd FashionRAG
+cd LamodeRAG
 ```
 
 2. Create a new Conda environment with Python 3.10:
